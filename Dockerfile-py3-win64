@@ -1,4 +1,4 @@
-FROM debian:11.2
+FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -11,10 +11,10 @@ ARG PYINSTALLER_VERSION=4.9
 RUN set -x \
     && dpkg --add-architecture i386 \
     && apt-get update -qy \
-    && apt-get install --no-install-recommends -qfy apt-transport-https gnupg2 software-properties-common wget \
+    && apt-get install --no-install-recommends -qfy apt-transport-https software-properties-common wget \
     && wget -nv https://dl.winehq.org/wine-builds/winehq.key \
     && apt-key add winehq.key \
-    && add-apt-repository 'https://dl.winehq.org/wine-builds/debian/' \
+    && add-apt-repository 'https://dl.winehq.org/wine-builds/ubuntu/' \
     && apt-get update -qy \
     && apt-get install --no-install-recommends -qfy $WINE_VERSION winbind cabextract \
     && apt-get clean \
